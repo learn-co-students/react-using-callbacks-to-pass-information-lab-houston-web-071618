@@ -5,12 +5,25 @@ import ColorSelector from './ColorSelector.js'
 
 export default class Matrix extends Component {
 
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
+    this.state = {
+      selectedColor: ""
+    }
+  }
+
+  currentColor = (e) => {
+    this.setState({
+      selectedColor: e.target.style.backgroundColor
+    })
+  }
+
+  cellColor = () => {
+    return this.state.selectedColor
   }
 
   genRow = (vals) => (
-    vals.map((val, idx) => <Cell key={idx} color={val} />)
+    vals.map((val, idx) => <Cell key={idx} color={val} cool={this.cellColor} />)
   )
 
   genMatrix = () => (
@@ -19,9 +32,10 @@ export default class Matrix extends Component {
 
 
   render() {
+    console.log(this.state)
     return (
       <div id="app">
-        <ColorSelector />
+        <ColorSelector currentColor={this.currentColor}/>
         <div id="matrix">
           {this.genMatrix()}
         </div>
