@@ -7,6 +7,15 @@ export default class Matrix extends Component {
 
   constructor() {
     super()
+    this.state = {
+      selectedColor: ''
+    }
+  }
+  
+  // Take color from colorSelector and push to each cell
+
+  setSelectedColor(hexColorString) {
+    this.setState({selectedColor: hexColorString})
   }
 
   genRow = (vals) => (
